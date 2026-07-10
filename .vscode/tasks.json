@@ -1,0 +1,157 @@
+// ALL COMMANDS THAT THE AVERAGE USER WOULD NEED
+
+// To use:
+//  1. Click on search bar at the top
+//  2. "Run Tasks"
+// Custom tasks should be at the very top and buttons should say the same
+// name as the labels
+
+// git commands may not work depending on the work done. May not work if
+// there are merge conflicts so you might need to input commands on your
+// own if they dont work
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    // Button: build the main.cpp file
+    {
+        "label": "Build Code (main.cpp)",
+        "type": "shell",
+        "command": "pio",
+        "args": [
+            "run"
+        ],
+        "group": "build"
+    },
+    // Button: Run test files
+    {
+        "label": "Test Testfiles (test_main.cpp)",
+        "type": "shell",
+        "command": "pio",
+        "args": [
+            "test",
+            "-e",
+            "native"
+        ],
+        "group": "test"
+    },
+    // Button: Upload code to microcontroller
+    {
+        "label": "Upload to Microcontroller",
+        "type": "shell",
+        "command": "pio",
+        "args": [
+            "run",
+            "-e",
+            "teensy41",
+            "-t",
+            "upload"
+        ]
+    },
+    // Button: Open Serial monitor
+    {
+        "label": "Open Serial Monitor",
+        "type": "shell",
+        "command": "pio",
+        "args": [
+            "device",
+            "monitor"
+        ]
+    },
+    // Button: Build Doxygen, don't need to do
+    // yml already builds doxygen for us but if user wants to run it on
+    // their computer they will need to do these commands
+    {
+        "label": "Build Doxygen (Only works if installed on computer)",
+        "type": "shell",
+        "command": "doxygen",
+        "args": [
+            "dev/tools/Doxygen"
+        ]
+    },
+    // Button: Git commands to pull, will merge
+    {
+        "label": "Git Pull: Get Code from Github",
+        "type": "shell",
+        "dependsOn": [
+            "_git_pull_merge"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": []
+    },
+    // Button: git commands: pull, add, commit, push 
+    {
+        "label": "Git Push: Save and Publish Your Code",
+        "dependsOn": [
+            "_git_stage_all",
+            "_git_commit_if_needed",
+            "_git_pull_merge",
+            "_git_push"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": [],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    // Command: git add .
+    {
+        "label": "_git_stage_all",
+        "type": "shell",
+        "command": "git",
+        "args": [
+            "add",
+            "-A"
+        ],
+        "hide": true,
+        "problemMatcher": []
+    },
+    // Command: commit -m, user will input their own message
+    {
+        "label": "_git_commit_if_needed",
+        "type": "shell",
+        "command": "git",
+        "args": [
+            "commit",
+            "-m",
+            "\"${input:commitMessage}\""
+        ],
+        "hide": true,
+        "problemMatcher": []
+    },
+    // Command: git pull (merge)
+    {
+        "label": "_git_pull_merge",
+        "type": "shell",
+        "command": "git",
+        "args": [
+            "pull",
+            "--no-rebase"
+        ],
+        "hide": true,
+        "problemMatcher": []
+    },
+    // Command: git push
+    {
+        "label": "_git_push",
+        "type": "shell",
+        "command": "git",
+        "args": [
+            "push"
+        ],
+        "hide": true,
+        "problemMatcher": []
+    }
+], // END "tasks"
+
+  // Command: Input Commit Message
+  "inputs": [
+    {
+        "id": "commitMessage",
+        "type": "promptString",
+        "description": "What changed (click enter when done)?",
+        "default": "list changes"
+    }
+  ] // END "inputs"
+}

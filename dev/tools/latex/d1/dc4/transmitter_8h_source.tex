@@ -1,0 +1,55 @@
+\doxysection{transmitter.\+h}
+\hypertarget{transmitter_8h_source}{}\label{transmitter_8h_source}\index{lib/transmitter.h@{lib/transmitter.h}}
+\doxymbox{\hyperlink{transmitter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SerialT>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classTransmitter_a62ebcc1014bf6cb54bb5fbf44e58aaba}{Transmitter}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \doxymbox{\hyperlink{classTransmitter_a62ebcc1014bf6cb54bb5fbf44e58aaba}{Transmitter}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ SerialT\&\ serial,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ network,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ address,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ baudRate\ =\ 115200,}
+\DoxyCodeLine{00036\ \ \ \ \ )}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ :\ \_serial(serial),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \_network(network),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \_address(address),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \_baudRate(baudRate),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \_waitMs(waitMs)\ \{\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classTransmitter_a60cc1c8f9bb46be4a3943b1c4a65b1ad}{begin}}()\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \_serial.begin(\_baudRate);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \_serial.println(\textcolor{stringliteral}{"{}AT"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \_serial.print(\textcolor{stringliteral}{"{}AT+NETWORKID="{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \_serial.println(\_network);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \_serial.print(\textcolor{stringliteral}{"{}AT+ADDRESS="{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \_serial.println(\_address);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ callToTransmitter()\{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \_serial.print(\textcolor{stringliteral}{"{}AT+SEND="{}});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \_serial.println(\_address);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ SerialT\&\ \_serial;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{long}\ \_network;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{long}\ \_address;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_baudRate;\ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_waitMs;\ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \};}
+
+\end{DoxyCode}

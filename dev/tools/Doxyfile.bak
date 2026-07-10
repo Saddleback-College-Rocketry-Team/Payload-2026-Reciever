@@ -1,0 +1,46 @@
+# Doxygen configuration for Rocketry-Template
+
+PROJECT_NAME           = "Rocketry-Template"
+PROJECT_BRIEF          = "PlatformIO firmware project documentation"
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+
+# Inputs
+INPUT                  = src include lib README.md
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.md
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */.pio/* */.git/*
+
+# Source browsing
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+
+# Warnings
+QUIET                  = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+
+# HTML output
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+
+# Disable unused formats for a beginner-friendly setup
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+GENERATE_DOCBOOK       = NO
+
+# Markdown support
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+
+# Preprocessor settings for C/C++ parsing
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = NO
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = include lib

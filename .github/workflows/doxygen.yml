@@ -1,0 +1,65 @@
+# Disabled unless you're making a large code and would like to use this
+# to help keep track of things / have easier documentation
+
+# To make doxygen page must first do the following steps:
+
+# Must enable permissions first:
+#   1. Go to Repo
+#   2. Click "Settings"
+#   3. "Actions"
+
+# Create a Page
+#   1. Go to Repo
+#   2. Click "Settings"
+#   3. Click "Pages"
+#   4. "Deploy from a branch"
+#   5. "GitHub Actions"
+
+name: Build and Publish Doxygen
+
+# Will only modify and read when changes to main branch happen
+# uncomment this section if you want to reenable doxygen
+# on:
+#   push:
+#     branches: [ main ]
+#   workflow_dispatch:
+
+# Giving actions permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Create Page
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+# What YML will do
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Generate documentation
+        run: doxygen dev/tools/Doxygen
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dev/html
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

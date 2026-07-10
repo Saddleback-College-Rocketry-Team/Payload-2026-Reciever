@@ -1,0 +1,97 @@
+\doxysection{Transmitter\texorpdfstring{$<$}{<} SerialT \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classTransmitter}{}\label{classTransmitter}\index{Transmitter$<$ SerialT $>$@{Transmitter$<$ SerialT $>$}}
+
+
+Template class for a transmitter device using serial communication.  
+
+
+
+
+{\ttfamily \+\#include $<$transmitter.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classTransmitter_a62ebcc1014bf6cb54bb5fbf44e58aaba}{Transmitter}} (SerialT \&serial, int network, int address, unsigned int baud\+Rate=115200,)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classTransmitter}{Transmitter}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classTransmitter_a60cc1c8f9bb46be4a3943b1c4a65b1ad}{begin}} ()
+\begin{DoxyCompactList}\small\item\em Initialize and configure the transmitter. \end{DoxyCompactList}\item 
+\Hypertarget{classTransmitter_af57d5dc12f08180f5b8ba2e9a39f63ea}\label{classTransmitter_af57d5dc12f08180f5b8ba2e9a39f63ea} 
+void {\bfseries call\+To\+Transmitter} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename SerialT$>$\newline
+class Transmitter$<$ Serial\+T $>$}
+Template class for a transmitter device using serial communication. 
+
+This class initializes and configures a transmitter module using AT commands. It allows setting the network ID and device address over a serial interface.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em SerialT} & Type of the serial interface (e.\+g., Hardware\+Serial, Software\+Serial). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\label{doc-constructors}
+\Hypertarget{classTransmitter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTransmitter_a62ebcc1014bf6cb54bb5fbf44e58aaba}\index{Transmitter$<$ SerialT $>$@{Transmitter$<$ SerialT $>$}!Transmitter@{Transmitter}}
+\index{Transmitter@{Transmitter}!Transmitter$<$ SerialT $>$@{Transmitter$<$ SerialT $>$}}
+\doxysubsubsection{\texorpdfstring{Transmitter()}{Transmitter()}}
+{\footnotesize\ttfamily \label{classTransmitter_a62ebcc1014bf6cb54bb5fbf44e58aaba} 
+template$<$typename SerialT$>$ \\
+\doxymbox{\hyperlink{classTransmitter}{Transmitter}}$<$ SerialT $>$::\+\+Transmitter (\begin{DoxyParamCaption}\item[{SerialT \&}]{serial}{, }\item[{int}]{network}{, }\item[{int}]{address}{, }\item[{unsigned int}]{baud\+Rate}{ = {\ttfamily 115200}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classTransmitter}{Transmitter}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & Reference to the serial interface. \\
+\hline
+{\em network} & Network ID for the transmitter. \\
+\hline
+{\em address} & Address ID for the transmitter. \\
+\hline
+{\em baud\+Rate} & Baud rate for communication (default:\+ 115200). \\
+\hline
+{\em wait\+Ms} & Delay between commands in milliseconds (default:\+ 200). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classTransmitter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTransmitter_a60cc1c8f9bb46be4a3943b1c4a65b1ad}\index{Transmitter$<$ SerialT $>$@{Transmitter$<$ SerialT $>$}!begin@{begin}}
+\index{begin@{begin}!Transmitter$<$ SerialT $>$@{Transmitter$<$ SerialT $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{classTransmitter_a60cc1c8f9bb46be4a3943b1c4a65b1ad} 
+template$<$typename SerialT$>$ \\
+void \doxymbox{\hyperlink{classTransmitter}{Transmitter}}$<$ SerialT $>$::\+begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize and configure the transmitter. 
+
+Sends AT commands to verify communication, set network ID, and assign device address. Initialize serial communication
+
+Check communication with module.
+
+"{}\+AT"{} command verifies that the module is responsive.
+
+Set network ID.
+
+Devices must share the same network ID to communicate.
+
+Set device address.
+
+Assigns a unique identifier to this transmitter.
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+lib/\+\doxymbox{\hyperlink{transmitter_8h}{transmitter.\+h}}\end{DoxyCompactItemize}

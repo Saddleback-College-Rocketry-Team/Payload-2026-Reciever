@@ -1,0 +1,45 @@
+\doxysection{CSV.\+h}
+\hypertarget{CSV_8h_source}{}\label{CSV_8h_source}\index{lib/CSV.h@{lib/CSV.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SD.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SDT>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classSDManager_a24e1daa18f76a2d081e1061afb0343bf}{SDManager}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{classSDManager_a24e1daa18f76a2d081e1061afb0343bf}{SDManager}}(SDT\&\ sd)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ :\ \_sd(sd)\ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classSDManager_ac7f4a3e18e89d5bcd1ba1c19ce725167}{createCSV}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ header)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_sd.exists(fileName))\ \{}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ File\ file\ =\ \_sd.open(fileName,\ FILE\_WRITE);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file.println(header);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classSDManager_a2f9cf1b47091c6b850c913595779ae87}{appendRow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ data)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ File\ file\ =\ \_sd.open(fileName,\ FILE\_WRITE);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ file.println(data);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classSDManager_a98260fd0f4534ab757f0c3e0bc817ae0}{fileExists}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_sd.exists(fileName);}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00088\ \ \ \ \ SDT\&\ \_sd;\ }
+\DoxyCodeLine{00089\ \};}
+
+\end{DoxyCode}

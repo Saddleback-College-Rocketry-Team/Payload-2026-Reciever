@@ -1,0 +1,25 @@
+# Runs:
+# every push
+# every pull
+on: [push, pull_request]
+
+jobs:
+  test:
+    # OS to similuate tests on (All OS)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install platformio
+        
+    # checks if can compile add
+    - name: Run tests on the native platform
+      run: pio run -e teensy41

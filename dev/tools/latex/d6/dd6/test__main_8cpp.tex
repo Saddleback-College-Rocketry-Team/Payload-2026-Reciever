@@ -1,0 +1,68 @@
+\doxysection{test/\+test\+\_\+main.cpp File Reference}
+\hypertarget{test__main_8cpp}{}\label{test__main_8cpp}\index{test/test\_main.cpp@{test/test\_main.cpp}}
+
+
+file that will be to test things  
+
+
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include $<$unity.\+h$>$}\newline
+{\ttfamily \+\#include "{}transmitter.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classMockSerial}{Mock\+Serial}}
+\begin{DoxyCompactList}\small\item\em Mock serial class for testing without hardware. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{test__main_8cpp_a95c834d6178047ce9e1bce7cbfea2836}\label{test__main_8cpp_a95c834d6178047ce9e1bce7cbfea2836} 
+void {\bfseries set\+Up} (void)
+\begin{DoxyCompactList}\small\item\em Runs before each test. \end{DoxyCompactList}\item 
+\Hypertarget{test__main_8cpp_a9909011e5fea0c018842eec4d93d0662}\label{test__main_8cpp_a9909011e5fea0c018842eec4d93d0662} 
+void {\bfseries tear\+Down} (void)
+\begin{DoxyCompactList}\small\item\em Runs after each test. \end{DoxyCompactList}\item 
+\Hypertarget{test__main_8cpp_a48cadd2b3948f8cda898712594911fa3}\label{test__main_8cpp_a48cadd2b3948f8cda898712594911fa3} 
+void {\bfseries test\+\_\+basic\+\_\+math} (void)
+\begin{DoxyCompactList}\small\item\em Basic math test example. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{test__main_8cpp_abcf168251feb398a4840062027ffefb6}{test\+\_\+transmitter\+\_\+begin}} (void)
+\begin{DoxyCompactList}\small\item\em Test transmitter begin function. \end{DoxyCompactList}\item 
+\Hypertarget{test__main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{test__main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void {\bfseries setup} ()
+\begin{DoxyCompactList}\small\item\em Arduino-\/style test runner. \end{DoxyCompactList}\item 
+\Hypertarget{test__main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{test__main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void {\bfseries loop} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{test__main_8cpp_abed85579ec73f8897365b9547180de3e}\label{test__main_8cpp_abed85579ec73f8897365b9547180de3e} 
+\doxymbox{\hyperlink{classMockSerial}{Mock\+Serial}} {\bfseries mock\+Serial}
+\begin{DoxyCompactList}\small\item\em Global transmitter instance using mock serial. \end{DoxyCompactList}\item 
+\Hypertarget{test__main_8cpp_af86102e425e11d7a1c80385cc69ae791}\label{test__main_8cpp_af86102e425e11d7a1c80385cc69ae791} 
+\doxymbox{\hyperlink{classTransmitter}{Transmitter}}$<$ \doxymbox{\hyperlink{classMockSerial}{Mock\+Serial}} $>$ {\bfseries radio} (\doxymbox{\hyperlink{test__main_8cpp_abed85579ec73f8897365b9547180de3e}{mock\+Serial}}, 18, 1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+file that will be to test things 
+
+\begin{DoxyDate}{Date}
+2026-\/03-\/07 
+\end{DoxyDate}
+
+
+\label{doc-func-members}
+\Hypertarget{test__main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{test__main_8cpp_abcf168251feb398a4840062027ffefb6}\index{test\_main.cpp@{test\_main.cpp}!test\_transmitter\_begin@{test\_transmitter\_begin}}
+\index{test\_transmitter\_begin@{test\_transmitter\_begin}!test\_main.cpp@{test\_main.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_transmitter\_begin()}{test\_transmitter\_begin()}}
+{\footnotesize\ttfamily \label{test__main_8cpp_abcf168251feb398a4840062027ffefb6} 
+void test\+\_\+transmitter\+\_\+begin (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Test transmitter begin function. 
+
+Ensures the function executes without crashing. 
