@@ -19,10 +19,10 @@ name: Build and Publish Doxygen
 
 # Will only modify and read when changes to main branch happen
 # uncomment this section if you want to reenable doxygen
-# on:
+on:
 #   push:
 #     branches: [ main ]
-#   workflow_dispatch:
+  workflow_dispatch:
 
 # Giving actions permissions
 permissions:
