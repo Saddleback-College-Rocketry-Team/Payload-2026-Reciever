@@ -22,4 +22,4 @@ jobs:
         
     # checks if can compile add
     - name: Run tests on the native platform
-      run: pio run -e teensy41
+      run: pio run
