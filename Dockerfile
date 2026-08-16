@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install --no-cache-dir platformio
 
 # Install Teensy platform
-RUN pio platform install teensy
+RUN pio platform install atmelavr
 
 # Set working directory inside container
 WORKDIR /workspace

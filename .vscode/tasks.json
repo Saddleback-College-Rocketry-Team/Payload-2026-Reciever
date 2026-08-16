@@ -43,7 +43,7 @@
         "args": [
             "run",
             "-e",
-            "teensy41",
+            "nano",
             "-t",
             "upload"
         ]
