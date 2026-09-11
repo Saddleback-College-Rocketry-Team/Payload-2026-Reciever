@@ -23,7 +23,8 @@
  * Note: try changing board if all troubleshooting steps dont work
  * ---------------------------------------------------------------------
  * MICROCONTROLLER: 
- *  - Arduino Nano (one that says Nano in front)
+ *  - Raspberry Pi Pico
+ *  https://docs.platformio.org/en/latest/boards/raspberrypi/pico.html#board-raspberrypi-pico
  * 
  * SENSORS:
  *  - Radio DRF4463D20 (transmitter should have same radio)
@@ -103,22 +104,13 @@ uint8_t indexCurrNmea = 0;  // index for nmea sentence we are constructing
 unsigned long currentTime;    // current time, from when sensor was turned on
 unsigned long lastSDSave;     // last time data was saved to sd
 
-char nmeaSentence[SIZE_NMEA_LEN]; // nmea sentence we are recieving in pieces
 File fileNmea;                    // file to save nmea sentences to
-
-/***********************************************************************
- * PACKETS
- **********************************************************************/
-// Packet for RAM buffer - general sensors
-struct packetRam {
-  char saveNmea[SIZE_NMEA_LEN]; // fully constructed nmea sentence to save to SD
-}; // END packetRam
 
 /***********************************************************************
  * BUFFERS
  **********************************************************************/
 // Buffer for all sensors
-packetRam BufferRam[SIZE_BUFFER_RAM];
+char nmeaSentence[SIZE_BUFFER_RAM][SIZE_NMEA_LEN]; // nmea sentence we are recieving in pieces
 
 /***********************************************************************
  * setup() : CODE THAT RUNS ONCE
@@ -176,11 +168,11 @@ void loop() {
    * transmitter
    ********************************************************************/
   while (Radio.available()) {
-    char incomingByte = Radio.read();
+    char incomingByte = Radio.read(); // byte recieved from radio
 
     // BUILD SENTENCE
     if (indexCurrNmea < SIZE_NMEA_LEN - 1) {
-      nmeaSentence[indexCurrNmea] = incomingByte;
+      nmeaSentence[counter_ram][indexCurrNmea] = incomingByte;
       indexCurrNmea++;
     } // END if (indexCurrNmea < SIZE_NMEA_LEN - 1) 
 
@@ -193,22 +185,17 @@ void loop() {
     if (incomingByte == '\n') {
 
       // ADD NULL TERMINATOR
-      nmeaSentence[indexCurrNmea] = '\0';
+      nmeaSentence[counter_ram][indexCurrNmea] = '\0';
 
-      // SAVE TO PACKET
-      if (counter_ram < SIZE_BUFFER_RAM) {
-        strcpy(BufferRam[counter_ram].saveNmea, nmeaSentence);
-          
-        // INCREMENT COUNTER
-        counter_ram++;
-      } // END if (counter_ram < SIZE_BUFFER_RAM)
+      // INCREMENT BUFFER COUNTER
+      counter_ram++;
 
       // RESET FOR NEXT SENTENCE 
       indexCurrNmea = 0;
         
       // DEBUGGING (hide): OUTPUT WHAT WAS RECIEVED TO COMPUTER
       Serial.print("Recieved: ");
-      Serial.println(nmeaSentence);
+      Serial.println(nmeaSentence[counter_ram][indexCurrNmea]);
 
     } // END if (incomingByte == '\n')
   } // END while (Radio.available()) 
@@ -233,12 +220,17 @@ void loop() {
       Serial.print("Saving at: ");
       Serial.println(currentTime);
 
+      size_t saveNmea = 0;
       // SAVE TO SD
-      fileNmea.println(BufferRam[indexSave].saveNmea);
+      while (nmeaSentence[indexSave][saveNmea] != '\0') {  
+        fileNmea.print(nmeaSentence[indexSave][saveNmea]);
 
-      // DEBUGGING (hide): OUTPUT WHAT WE ARE SAVING
-      Serial.print("Saving: ");
-      Serial.println(BufferRam[indexSave].saveNmea);
+        // DEBUGGING (hide): OUTPUT WHAT WE ARE SAVING
+        Serial.println(nmeaSentence[indexSave][saveNmea]);
+
+        // move to next character
+        saveNmea++;
+      } // END while
 
       // INCREMENT COUNTER
       indexSave++;
