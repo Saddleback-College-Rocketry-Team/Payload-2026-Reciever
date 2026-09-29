@@ -63,7 +63,7 @@
                       // delete if you're using Arduino IDE
 
 #include <SoftwareSerial.h>   // for recieving
-// #include <SPI.h>              // SD interface
+#include <SPI.h>              // SD interface
 #include <SD.h>               // SD card
 
 /***********************************************************************
@@ -94,6 +94,7 @@ const unsigned long RATE_SD = 1000;          // 1Hz, save to sd
  **********************************************************************/
 // SENSOR OBJECTS
 SoftwareSerial Radio(RADIO_RX, RADIO_TX);   // radio 
+File fileNmea;                               // file to save nmea sentences to
 
 // COUNTER
 uint8_t counter_ram = 0;    // index for ram buffer
@@ -102,9 +103,7 @@ uint8_t indexCurrNmea = 0;  // index for nmea sentence we are constructing
 
 // VARIABLES FOR KEEPING TRACK OF TIME
 unsigned long currentTime;    // current time, from when sensor was turned on
-unsigned long lastSDSave;     // last time data was saved to sd
-
-File fileNmea;                    // file to save nmea sentences to
+unsigned long lastSDSave;     // last time data was saved to sd             
 
 /***********************************************************************
  * BUFFERS
